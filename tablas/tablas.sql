@@ -2,6 +2,36 @@ CREATE DATABASE IF NOT EXISTS sanifersac;
 
 USE sanifersac;
 
+CREATE TABLE ciudad (
+	id_ciudad INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    nombre_ciudad VARCHAR(40)
+);
+
+CREATE TABLE fabrica (
+	id_fabrica INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    nombre_fabrica VARCHAR(50),
+    telefono INT,
+    direccion VARCHAR(100)
+);
+
+CREATE TABLE proveedor (
+	id_proveedor INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    razon_social VARCHAR(50) NOT NULL,
+    direccion VARCHAR(100),
+    email VARCHAR(100) NOT NULL,
+    telefono INT
+);
+
+CREATE TABLE estado_de_venta (
+	id_estado_de_venta INT NOT NULL PRIMARY KEY,
+    descripcion_estado VARCHAR(20)
+);
+
+CREATE TABLE medio_de_pago (
+	id_medio_de_pago INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    medio_de_pago VARCHAR(20)
+);
+
 CREATE TABLE cliente (
 	dni_cliente INT NOT NULL PRIMARY KEY,
     nombre VARCHAR(40),
@@ -28,11 +58,6 @@ CREATE TABLE empleado (
     CONSTRAINT `FK_EMPLEADO_FABRICA` FOREIGN KEY (id_fabrica) REFERENCES fabrica(id_fabrica)
 );
 
-CREATE TABLE ciudad (
-	id_ciudad INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    nombre_ciudad VARCHAR(40)
-);
-
 CREATE TABLE producto (
 	id_producto INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(50) NOT NULL,
@@ -41,21 +66,6 @@ CREATE TABLE producto (
     stock INT,
     id_fabrica INT NOT NULL,
     CONSTRAINT `FK_PRODUCTO_FABRICA` FOREIGN KEY (id_fabrica) REFERENCES fabrica(id_fabrica)
-);
-
-CREATE TABLE fabrica (
-	id_fabrica INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    nombre_fabrica VARCHAR(50),
-    telefono INT,
-    direccion VARCHAR(100)
-);
-
-CREATE TABLE proveedor (
-	id_proveedor INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    razon_social VARCHAR(50) NOT NULL,
-    direccion VARCHAR(100),
-    email VARCHAR(100) NOT NULL,
-    telefono INT
 );
 
 CREATE TABLE material (
@@ -109,10 +119,7 @@ CREATE TABLE detalle_factura_compra (
     CONSTRAINT `FK_FACTURA_COMPRA_MEDIO` FOREIGN KEY (id_medio_de_pago) REFERENCES medio_de_pago(id_medio_de_pago)
 );
 
-CREATE TABLE estado_de_venta (
-	id_estado_de_venta INT NOT NULL PRIMARY KEY,
-    descripcion_estado VARCHAR(20)
-);
+
 
 CREATE TABLE marcacion (
 	id_marcacion INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -121,11 +128,6 @@ CREATE TABLE marcacion (
     hora_salida TIME,
     dni_empleado INT,
     CONSTRAINT `FK_MARCACION_EMPLEADO` FOREIGN KEY (dni_empleado) REFERENCES empleado(id_empleado)
-);
-
-CREATE TABLE medio_de_pago (
-	id_medio_de_pago INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    medio_de_pago VARCHAR(20)
 );
 
 
