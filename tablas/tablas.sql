@@ -17,7 +17,7 @@ CREATE TABLE proveedor (
     razon_social VARCHAR(100) NOT NULL,
     direccion VARCHAR(100),
     email VARCHAR(100) NOT NULL,
-    telefono INT
+    telefono BIGINT
 );
 
 CREATE TABLE fabrica (
@@ -47,7 +47,7 @@ CREATE TABLE empleado (
     apellido VARCHAR(50) NOT NULL,
     edad INT,
     email VARCHAR(100) NOT NULL,
-    telefono INT,
+    telefono BIGINT,
     id_ciudad INT NOT NULL,
     id_fabrica INT NOT NULL,
     FOREIGN KEY (id_ciudad) REFERENCES ciudad(id),
